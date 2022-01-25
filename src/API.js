@@ -17,7 +17,6 @@ const authenticate = () => {
 };
 
 const refreshAuthentication = refreshToken => {
-  console.log(refreshToken);
   const configurationObject = {
     method: 'POST',
     headers: {

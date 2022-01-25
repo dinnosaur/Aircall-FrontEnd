@@ -14,7 +14,6 @@ let useStyles = makeStyles(AppStyling);
 function App() {
   const [authToken, setAuthToken] = useState('');
   const [refreshToken, setRefreshToken] = useState('');
-  const [page, setPages] = useState(0);
 
   const classes = useStyles();
   useEffect(() => {
@@ -31,7 +30,6 @@ function App() {
       API.refreshAuthentication(refreshToken)
         .then(resp => resp.json())
         .then(data => () => {
-          console.log(data);
           setAuthToken(data.access_token);
           setRefreshToken(data.refresh_token);
         });
@@ -56,12 +54,12 @@ function App() {
     channel.bind('update-call', data => {
       console.log(data);
     });
-  }, [authToken, page]);
+  }, [authToken]);
 
   return (
     <div className={classes.app}>
       <h1 className={classes.title}>Aircall Calls</h1>
-      <CallList page={page} token={authToken} />
+      <CallList token={authToken} />
     </div>
   );
 }
