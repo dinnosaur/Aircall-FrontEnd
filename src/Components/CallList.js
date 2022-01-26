@@ -15,7 +15,7 @@ import Pagination from '@mui/material/Pagination';
 
 const useStyles = makeStyles(AppStyling);
 
-const CallList = ({ token }) => {
+const CallList = ({ token, setCall }) => {
   const classes = useStyles();
   const [calls, setCalls] = useState([]);
   const [page, setPage] = useState(0);
@@ -33,31 +33,31 @@ const CallList = ({ token }) => {
     <>
       <div className={classes.callListContainer}>
         <Spacer space="s" width="100% !important" direction="vertical">
-          {displayCalls(sortbyDate(calls.nodes), classes)}
+          {displayCalls(sortbyDate(calls.nodes), classes, setCall)}
         </Spacer>
       </div>
       <Pagination
         className={classes.pagination}
         count={calls.totalCount - 1}
         page={page + 1}
-        onChange={page => handlePage(page, setPage)}
+        onChange={(event, value) => handlePage(event, value, setPage)}
       />
     </>
   );
 };
 
-const handlePage = (page, setPage) => {
-  setPage(parseInt(page.target.outerText) - 1);
+const handlePage = (event, value, setPage) => {
+  setPage(parseInt(value) - 1);
 };
 
-const displayCalls = (calls, classes) => {
+const displayCalls = (calls, classes, setCall) => {
   console.log(calls);
   if (calls !== undefined && calls.length > 1) {
     return calls.map(call => {
       return (
         <>
           <div className={classes.call}>
-            <Button>
+            <Button onClick={() => setCall(call)}>
               <CallFilled />
               {call.from}
             </Button>

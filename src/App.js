@@ -3,6 +3,7 @@ import API from './API';
 import { useEffect, useState } from 'react';
 
 import CallList from './Components/CallList';
+import CallInformation from './Components/CallInformation';
 import AppStyling from './AppStyling';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -14,6 +15,7 @@ let useStyles = makeStyles(AppStyling);
 function App() {
   const [authToken, setAuthToken] = useState('');
   const [refreshToken, setRefreshToken] = useState('');
+  const [call, setCall] = useState(false);
 
   const classes = useStyles();
   useEffect(() => {
@@ -59,7 +61,11 @@ function App() {
   return (
     <div className={classes.app}>
       <h1 className={classes.title}>Aircall Calls</h1>
-      <CallList token={authToken} />
+      {call ? (
+        <CallInformation call={call} />
+      ) : (
+        <CallList setCall={call => setCall(call)} token={authToken} />
+      )}
     </div>
   );
 }

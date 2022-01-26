@@ -34,7 +34,7 @@ const refreshAuthentication = refreshToken => {
 };
 
 const getCalls = (authToken, offset) => {
-  // if statement for when displaying certain number of paqges
+  // if statement for when displaying certain number of paqes
   return fetch(BASE_URL + `calls?offset=${offset}&limit=7`, {
     headers: { Authorization: `Bearer ${authToken}` }
   });

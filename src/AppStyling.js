@@ -29,6 +29,19 @@ const AppStyling = {
   pagination: {
     display: 'flex',
     justifyContent: 'center'
+  },
+  callInformation: {
+    width: '45vw',
+    textAlign: 'center',
+    margin: '60px auto',
+    '& h2': {
+      color: '#00B388'
+    }
+  },
+  callNotes: {
+    width: '45vw',
+    textAlign: 'center',
+    margin: '60px auto'
   }
 };
 
