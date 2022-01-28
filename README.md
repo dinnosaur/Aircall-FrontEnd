@@ -10,13 +10,13 @@ This app was created using react which that allows calls to be displayed and det
 - npm start 
 
 ### Program In action 
-![Home Page](https://github.com/dinnosaur/skillherit-frontend/blob/master/images/Screenshot%202020-11-25%20at%2016.34.34.png?raw=true)
+![Home Page](https://github.com/dinnosaur/Aircall-FrontEnd/blob/main/Images/Screenshot%202022-01-28%20at%2018.06.27.png?raw=true)
 
 >This is the home page that the user is presented with when the user has logged in. It is all the Skills that users have posted,users can also filter by topic or length of completion.
 
 &nbsp;
 
-![Home Page](https://github.com/dinnosaur/skillherit-frontend/blob/master/images/Screenshot%202020-11-25%20at%2016.36.00.png?raw=true)
+![Home Page](https://github.com/dinnosaur/Aircall-FrontEnd/blob/main/Images/Screenshot%202022-01-28%20at%2018.09.18.png?raw=true)
 
 >This journey page allows the user to access logs of learning sessions for tracks that have been completed. 
 
