@@ -13,11 +13,7 @@ const CallInformation = ({ call, token, setCall }) => {
   return (
     <>
       <div className={classes.callInformation}>
-        <Button
-          variant="darkGhost"
-          onClick={() => setCall(false)}
-          className={classes.backButton}
-        >
+        <Button onClick={() => setCall(false)} className={classes.backButton}>
           {'<---'}
         </Button>
         <Spacer
@@ -47,7 +43,6 @@ const CallInformation = ({ call, token, setCall }) => {
             <Button
               onClick={() => handleArchiveButton(setCall, token, call)}
               className={classes.archiveButton}
-              variant="darkGhost"
             >
               {call.is_archived ? 'Unarchive' : 'Archive'}
             </Button>
@@ -72,11 +67,10 @@ const CallInformation = ({ call, token, setCall }) => {
 };
 
 const displayNotes = notes => {
-  console.log(notes.length, notes.length !== 0);
   if (notes.length !== 0) {
     return notes.map((note, index) => {
       return (
-        <Typography>
+        <Typography key={index}>
           {index + 1}. {note.content}{' '}
         </Typography>
       );

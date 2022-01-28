@@ -18,7 +18,10 @@ function App() {
   const [call, setCall] = useState(false);
 
   const classes = useStyles();
+
+  //login the user and recieve a token
   useEffect(() => {
+    console.log('hello');
     API.authenticate()
       .then(resp => resp.json())
       .then(data => {
@@ -27,6 +30,7 @@ function App() {
       });
   }, []);
 
+  // reuqest a refresh token every 9 minutes -- (does not work)
   useEffect(() => {
     setInterval(() => {
       API.refreshAuthentication(refreshToken)
@@ -37,6 +41,7 @@ function App() {
         });
     }, 540000);
 
+    // Pusher sdk to listen to any call changes in the database.
     var pusher = new Pusher('d44e3d910d38a928e0be', {
       cluster: 'eu',
       authEndpoint: 'https://frontend-test-api.aircall.io/pusher/auth',
@@ -58,10 +63,6 @@ function App() {
     });
   }, [authToken]);
 
-  useEffect(() => {
-    console.log(authToken, 'hello');
-  });
-
   return authToken ? (
     <div className={classes.app}>
       <h1 className={classes.title}>Aircall Calls</h1>
@@ -76,7 +77,7 @@ function App() {
       )}
     </div>
   ) : (
-    <>{console.log('hello')}</>
+    <>{''}</>
   );
 }
 

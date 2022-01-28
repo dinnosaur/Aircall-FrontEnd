@@ -20,11 +20,11 @@ const CallList = ({ token, setCall }) => {
   const [calls, setCalls] = useState([]);
   const [page, setPage] = useState(0);
 
+  // fetch all call using the token
   useEffect(() => {
     API.getCalls(token, page)
       .then(resp => resp.json())
       .then(data => {
-        console.log(data);
         setCalls(data);
       });
   }, [page]);
@@ -35,13 +35,13 @@ const CallList = ({ token, setCall }) => {
         <Spacer space="s" width="100% !important" direction="vertical">
           {displayCalls(sortbyDate(calls.nodes), classes, setCall)}
         </Spacer>
+        <Pagination
+          className={classes.pagination}
+          count={calls.totalCount ? calls.totalCount - 1 : 1}
+          page={page + 1}
+          onChange={(event, value) => handlePage(event, value, setPage)}
+        />
       </div>
-      <Pagination
-        className={classes.pagination}
-        count={calls.totalCount - 1}
-        page={page + 1}
-        onChange={(event, value) => handlePage(event, value, setPage)}
-      />
     </>
   );
 };
@@ -51,12 +51,11 @@ const handlePage = (event, value, setPage) => {
 };
 
 const displayCalls = (calls, classes, setCall) => {
-  console.log(calls);
   if (calls !== undefined && calls.length > 1) {
     return calls.map(call => {
       return (
         <>
-          <div className={classes.call}>
+          <div key={call.id} className={classes.call}>
             <Button onClick={() => setCall(call)}>
               <CallFilled />
               {call.from}
@@ -71,7 +70,7 @@ const displayCalls = (calls, classes, setCall) => {
     });
   }
 };
-
+/// sort all the fetched calls by date in a descending order
 const sortbyDate = calls => {
   if (calls !== undefined) {
     return calls.sort(
