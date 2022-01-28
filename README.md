@@ -12,16 +12,24 @@ This app was created using react which that allows calls to be displayed and det
 ### Program In action 
 ![Home Page](https://github.com/dinnosaur/Aircall-FrontEnd/blob/main/Images/Screenshot%202022-01-28%20at%2018.06.27.png?raw=true)
 
->This is the home page that the user is presented with when the user has logged in. It is all the Skills that users have posted,users can also filter by topic or length of completion.
+>This is the main page that authorises the user and fetches all the calls, the user can click on a button and redirected to the specific calls details. The calls ordered by the date in a descending order
 
 &nbsp;
 
 ![Home Page](https://github.com/dinnosaur/Aircall-FrontEnd/blob/main/Images/Screenshot%202022-01-28%20at%2018.09.18.png?raw=true)
 
->This journey page allows the user to access logs of learning sessions for tracks that have been completed. 
+>This page shows the details of a specific call and allows users to archive or unarchive calls which is updated in the database as well as on the web app in real time.
+
+### Libraries used 
+Material UI was used for the pagination componenet as well as MUI's styling solution that uses jss for all my css code.
+Tractor Aircall design system was also used for most of the elements.
 
 
 ### Problems that were faced 
+-There was one issue that I was not able to fix which is to request a refresh token after the token has expired. I get the error that I am unauthorized. 
+-I was not able to sort all the calls by the date as I only receive a limited number of calls. 
+
+
 
 
 
