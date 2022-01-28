@@ -1,6 +1,6 @@
 import API from '../API';
 import { useEffect, useState } from 'react';
-import { Divider, Typography, Spacer } from '@aircall/tractor';
+import { Divider, Typography, Spacer, Button } from '@aircall/tractor';
 
 import AppStyling from '../AppStyling';
 
@@ -8,9 +8,9 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(AppStyling);
 
-const CallInformation = ({ call }) => {
+const CallInformation = ({ call, token, setCall }) => {
   const classes = useStyles();
-  console.log(call);
+
   return (
     <>
       <div className={classes.callInformation}>
@@ -36,7 +36,15 @@ const CallInformation = ({ call }) => {
           <Divider className="divider" orientation="horizontal" size="2px" />
           <Typography>Duration: {call.duration} Seconds</Typography>
           <Divider className="divider" orientation="horizontal" size="2px" />
-          <Typography>Archived: {call.is_archived ? 'yes' : 'no'}</Typography>
+          <div className={classes.archives}>
+            <Typography>Archived: {call.is_archived ? 'yes' : 'no'}</Typography>
+            <Button
+              onClick={() => handleArchiveButton(setCall, token, call)}
+              className={classes.archiveButton}
+            >
+              {call.is_archived ? 'Unarchive' : 'Archive'}
+            </Button>
+          </div>
           <Divider className="divider" orientation="horizontal" size="2px" />
         </Spacer>
       </div>
@@ -64,6 +72,14 @@ const displayNotes = notes => {
       </Typography>
     );
   });
+};
+
+const handleArchiveButton = (setCall, token, call) => {
+  API.archiveCall(token, call.id)
+    .then(resp => resp.json())
+    .then(data => {
+      setCall(data);
+    });
 };
 
 export default CallInformation;

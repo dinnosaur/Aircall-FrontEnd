@@ -42,6 +42,14 @@ const AppStyling = {
     width: '45vw',
     textAlign: 'center',
     margin: '60px auto'
+  },
+  archives: {
+    position: 'relative'
+  },
+  archiveButton: {
+    position: 'absolute !important',
+    top: '-12px',
+    right: '-150px'
   }
 };
 

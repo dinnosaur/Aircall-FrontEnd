@@ -27,7 +27,7 @@ const CallList = ({ token, setCall }) => {
         console.log(data);
         setCalls(data);
       });
-  }, [token, page]);
+  }, [page]);
 
   return (
     <>

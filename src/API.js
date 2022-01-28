@@ -23,11 +23,7 @@ const refreshAuthentication = refreshToken => {
       'Content-Type': 'application/json',
       Accept: 'application/json',
       Authorization: `Bearer ${refreshToken}`
-    },
-    body: JSON.stringify({
-      username: 'Dinno',
-      password: 'crebdrug'
-    })
+    }
   };
 
   return fetch(BASE_URL + 'auth/refresh-token-v2', configurationObject);
@@ -40,8 +36,22 @@ const getCalls = (authToken, offset) => {
   });
 };
 
+const archiveCall = (authToken, id) => {
+  const configurationObject = {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      Authorization: `Bearer ${authToken}`
+    }
+  };
+
+  return fetch(BASE_URL + `calls/${id}/archive`, configurationObject);
+};
+
 export default {
   authenticate,
   refreshAuthentication,
-  getCalls
+  getCalls,
+  archiveCall
 };

@@ -13,8 +13,8 @@ import Pusher from 'pusher-js';
 let useStyles = makeStyles(AppStyling);
 
 function App() {
-  const [authToken, setAuthToken] = useState('');
-  const [refreshToken, setRefreshToken] = useState('');
+  const [authToken, setAuthToken] = useState(false);
+  const [refreshToken, setRefreshToken] = useState(false);
   const [call, setCall] = useState(false);
 
   const classes = useStyles();
@@ -31,11 +31,11 @@ function App() {
     setInterval(() => {
       API.refreshAuthentication(refreshToken)
         .then(resp => resp.json())
-        .then(data => () => {
+        .then(data => {
           setAuthToken(data.access_token);
           setRefreshToken(data.refresh_token);
         });
-    }, 600000);
+    }, 540000);
 
     var pusher = new Pusher('d44e3d910d38a928e0be', {
       cluster: 'eu',
@@ -58,15 +58,25 @@ function App() {
     });
   }, [authToken]);
 
-  return (
+  useEffect(() => {
+    console.log(authToken, 'hello');
+  });
+
+  return authToken ? (
     <div className={classes.app}>
       <h1 className={classes.title}>Aircall Calls</h1>
       {call ? (
-        <CallInformation call={call} />
+        <CallInformation
+          setCall={call => setCall(call)}
+          token={authToken}
+          call={call}
+        />
       ) : (
         <CallList setCall={call => setCall(call)} token={authToken} />
       )}
     </div>
+  ) : (
+    <>{console.log('hello')}</>
   );
 }
 
