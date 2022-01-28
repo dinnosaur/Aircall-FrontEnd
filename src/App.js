@@ -21,7 +21,6 @@ function App() {
 
   //login the user and recieve a token
   useEffect(() => {
-    console.log('hello');
     API.authenticate()
       .then(resp => resp.json())
       .then(data => {
